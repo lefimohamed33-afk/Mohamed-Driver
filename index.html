@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d19">
+<title>AMINE VAULT | Premium Library</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+ --bg:#0d0b13;
+ --panel:#171420;
+ --panel2:#201b2b;
+ --line:rgba(190,165,255,.14);
+ --text:#f7f3ff;
+ --muted:#a69bb7;
+ --main:#a879ff;
+ --main2:#7549d8;
+ --green:#39e5a3;
+ --green2:#139a6c;
+ --shadow:0 22px 60px #0007;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+ margin:0;
+ min-height:100vh;
+ color:var(--text);
+ font-family:'Cairo',sans-serif;
+ background:
+ radial-gradient(ellipse at 8% 0%,#7040a52c,transparent 38%),
+ radial-gradient(ellipse at 95% 20%,#168e6c17,transparent 35%),
+ linear-gradient(145deg,#0d0b13,#15101e 55%,#0b1115);
+ background-attachment:fixed;
+}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+button:focus-visible,input:focus-visible,select:focus-visible{
+ outline:2px solid var(--main);
+ outline-offset:3px;
+}
+.app{max-width:1160px;margin:auto;padding:20px 20px 45px}
+
+/* HEADER */
+
+.top{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:13px 17px;
+ border:1px solid var(--line);border-radius:20px;
+ background:#171420dd;backdrop-filter:blur(18px);
+ box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+ width:47px;height:47px;border-radius:15px;
+ display:grid;place-items:center;
+ background:linear-gradient(140deg,#c6a0ff,#7549d8);
+ color:#170e25;font:900 23px 'Space Grotesk';
+ box-shadow:0 8px 25px #a879ff35;
+}
+.brand-name{font:700 17px 'Space Grotesk';letter-spacing:1.4px}
+.brand-sub{color:var(--muted);font:600 9px 'Space Grotesk';letter-spacing:2px;margin-top:3px}
+.top-actions{display:flex;align-items:center;gap:10px}
+.connection{
+ display:flex;align-items:center;gap:8px;padding:7px 11px;
+ border-radius:30px;border:1px solid #39e5a333;
+ background:#39e5a30d;color:#8cf0c6;font-size:10px;font-weight:700;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.icon-btn{
+ width:40px;height:40px;border:1px solid var(--line);
+ border-radius:13px;background:#ffffff08;color:var(--text);
+ font-size:18px;display:grid;place-items:center;
+}
+.icon-btn:hover{border-color:var(--main);color:var(--main)}
+.avatar{
+ width:40px;height:40px;border-radius:50%;
+ display:grid;place-items:center;
+ border:1px solid #a879ff55;background:#251b35;font-size:19px;
+}
+
+/* HERO */
+
+.hero{padding:43px 4px 28px;position:relative}
+.eyebrow{color:var(--main);font:700 10px 'Space Grotesk';letter-spacing:2.5px}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.3;margin:10px 0;font-weight:900}
+.hero h1 span{
+ background:linear-gradient(90deg,#c9aaff,#9d76ff,#58e6b2);
+ -webkit-background-clip:text;color:transparent;
+}
+.hero p{margin:0;max-width:620px;color:var(--muted);font-size:13px;line-height:2}
+
+/* STATS */
+
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:12px;margin:0 0 23px;
+}
+.stat{
+ padding:15px;border:1px solid var(--line);border-radius:17px;
+ background:linear-gradient(145deg,#201a2b,#15131e);
+}
+.stat-label{font-size:10px;color:var(--muted)}
+.stat-value{font:700 22px 'Space Grotesk';margin-top:5px}
+.stat-value.purple{color:#c4a4ff}
+.stat-value.green{color:var(--green)}
+.stat-value.blue{color:#8fc7ff}
+
+/* LIBRARY */
+
+.library-panel{
+ border:1px solid var(--line);border-radius:23px;padding:20px;
+ background:#171420c9;backdrop-filter:blur(15px);box-shadow:var(--shadow);
+}
+.toolbar{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:15px;flex-wrap:wrap;margin-bottom:20px;
+}
+.section-title{font-size:19px;font-weight:900}
+.count{font-size:11px;color:var(--main);font-weight:700;margin-top:3px}
+.tools{display:flex;align-items:center;gap:9px;flex:1;justify-content:flex-end;flex-wrap:wrap}
+.search{position:relative;flex:1;max-width:340px;min-width:180px}
+.search input{
+ width:100%;background:#0e0c15;border:1px solid var(--line);
+ border-radius:12px;padding:11px 39px 11px 12px;color:var(--text);
+ outline:none;font-size:12px;
+}
+.search input:focus{border-color:var(--main)}
+.search:before{content:'⌕';position:absolute;right:13px;top:4px;color:var(--main);font-size:23px}
+.view-toggle{
+ display:flex;padding:4px;border-radius:11px;
+ background:#0e0c15;border:1px solid var(--line);gap:3px;
+}
+.view-toggle button{background:transparent;color:var(--muted);padding:7px 10px;border-radius:8px}
+.view-toggle button.active{background:#33234b;color:#d0b6ff}
+
+/* FILE CARDS */
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:14px}
+.file-card{
+ position:relative;overflow:hidden;
+ border:1px solid var(--line);border-radius:19px;padding:17px;
+ background:linear-gradient(145deg,#211b2c,#15131e);
+ transition:.25s;
+}
+.file-card:before{
+ content:"";position:absolute;top:0;right:15%;width:70%;height:1px;
+ background:linear-gradient(90deg,transparent,#b48bff,transparent);
+ opacity:.5;
+}
+.file-card:hover{transform:translateY(-4px);border-color:#a879ff77;box-shadow:0 15px 35px #0005}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.pdf-icon{
+ width:49px;height:53px;border-radius:14px;
+ display:grid;place-items:center;
+ background:linear-gradient(145deg,#ff8294,#c84068);
+ color:white;font:900 13px 'Space Grotesk';
+ box-shadow:0 9px 22px #db547b30;
+}
+.file-number{
+ color:var(--muted);font:700 10px 'Space Grotesk';
+ padding:6px 9px;border:1px solid var(--line);border-radius:9px;
+}
+.file-card h3{
+ font-size:14px;margin:0 0 8px;font-weight:800;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.file-desc{font-size:10px;color:var(--muted);margin-bottom:15px}
+.card-info{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:7px;padding-top:12px;border-top:1px solid var(--line);
+}
+.pdf-label{font-size:10px;color:#d7c8f0;font-weight:800}
+.details-btn{
+ padding:9px 12px;border-radius:10px;
+ background:linear-gradient(110deg,#b995ff,#8056df);
+ color:#160d24;font-weight:900;font-size:10px;
+}
+.details-btn:hover{filter:brightness(1.12)}
+.empty{
+ grid-column:1/-1;text-align:center;color:var(--muted);
+ padding:40px 15px;border:1px dashed #a879ff55;border-radius:16px;
+}
+
+/* PAGES */
+
+.page{display:none}
+.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+/* DETAILS */
+
+.detail-wrap{max-width:760px;margin:12px auto 30px}
+.back{
+ padding:10px 15px;margin-bottom:15px;border-radius:11px;
+ border:1px solid var(--line);background:#211b2c;color:var(--text);
+ font-size:12px;font-weight:700;
+}
+.detail{
+ border:1px solid var(--line);border-radius:24px;
+ padding:clamp(22px,5vw,36px);
+ background:linear-gradient(145deg,#211b2e,#14151d);
+ box-shadow:var(--shadow);overflow:hidden;
+}
+.detail-heading{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.detail-pdf{
+ flex-shrink:0;width:67px;height:75px;border-radius:17px;
+ display:grid;place-items:center;
+ background:linear-gradient(145deg,#ff8294,#c84068);
+ color:white;font:900 20px 'Space Grotesk';
+ box-shadow:0 10px 25px #d74e7030;
+}
+.detail-heading h2{font-size:21px;margin:5px 0 0;overflow-wrap:anywhere}
+.verified-line{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:11px;color:#c9b4ff}
+.verified-badge{
+ width:19px;height:19px;border-radius:50%;
+ display:grid;place-items:center;
+ color:#071b16;background:linear-gradient(145deg,#74f5c0,#20c78b);
+ font-size:12px;font-weight:900;
+ box-shadow:0 0 12px #39e5a344;
+}
+.detail-divider{height:1px;background:var(--line);margin:19px 0}
+.info-row{
+ display:flex;justify-content:space-between;gap:14px;
+ padding:12px 0;border-bottom:1px solid var(--line);font-size:12px;
+}
+.info-row span{color:var(--muted)}
+.info-row strong{max-width:65%;text-align:left;overflow-wrap:anywhere}
+
+/* OWNER */
+
+.owner{
+ display:flex;align-items:center;gap:12px;margin:18px 0;
+ padding:14px;border:1px solid var(--line);
+ background:#ffffff05;border-radius:15px;
+}
+.owner-pic{
+ width:43px;height:43px;border-radius:50%;
+ display:grid;place-items:center;background:#33234b;border:1px solid #a879ff55;
+ font-size:20px;
+}
+.owner-name{font-weight:900;font-size:13px}
+.owner-role{font-size:10px;color:var(--muted);margin-top:3px}
+
+/* SECURITY METER */
+
+.security-card{
+ margin:20px 0;padding:17px;border-radius:17px;
+ border:1px solid #39e5a333;
+ background:linear-gradient(145deg,#10362c,#10251f);
+}
+.security-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.security-title{font-size:12px;font-weight:900;color:#c5ffe8}
+.security-percent{font:700 24px 'Space Grotesk';color:var(--green)}
+.security-sub{font-size:9px;color:#9ac5b3;margin-top:3px}
+.meter{
+ height:13px;margin-top:15px;padding:2px;
+ border-radius:20px;background:#071c17;
+ box-shadow:inset 0 3px 6px #0008,0 1px 0 #ffffff12;
+ overflow:hidden;
+}
+.meter-fill{
+ height:100%;width:0;border-radius:20px;
+ background:linear-gradient(90deg,#12895e,#39e5a3,#b4ffda);
+ box-shadow:0 0 12px #39e5a388,0 2px 4px #0005;
+ transition:width 1.2s ease;
+}
+.security-note{font-size:9px;line-height:1.8;color:#91b8a9;margin-top:10px}
+
+/* MEDIAFIRE */
+
+.mediafire{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;flex-wrap:wrap;padding:14px;
+ border:1px solid #e66b5835;border-radius:15px;
+ background:linear-gradient(110deg,#2c1a20,#201820);
+ margin-top:18px;
+}
+.mediafire-left{display:flex;align-items:center;gap:11px}
+.mediafire-logo{
+ width:39px;height:39px;border-radius:12px;
+ display:grid;place-items:center;background:#e34c42;color:white;
+ font:900 17px 'Space Grotesk';
+}
+.mediafire-title{font-size:12px;font-weight:900}
+.mediafire-sub{font-size:9px;color:#b9a3a3;margin-top:2px}
+.mediafire-tag{
+ font-size:9px;color:#ffb4a9;border:1px solid #e66b5855;
+ border-radius:20px;padding:5px 9px;
+}
+.download{
+ width:100%;padding:14px;border-radius:13px;margin-top:17px;
+ background:linear-gradient(110deg,#27d88f,#72f2b8);
+ color:#062218;font-weight:900;font-size:13px;
+ box-shadow:0 8px 25px #39e5a32b;
+}
+.download:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.download-hint{text-align:center;color:var(--muted);font-size:9px;margin-top:10px}
+
+/* SETTINGS MODAL */
+
+.modal-backdrop{
+ display:none;position:fixed;inset:0;z-index:2000;
+ background:#050409d9;backdrop-filter:blur(12px);
+ align-items:center;justify-content:center;padding:16px;
+}
+.modal-backdrop.show{display:flex}
+.modal{
+ width:min(100%,460px);max-height:90vh;overflow:auto;
+ border:1px solid var(--line);border-radius:23px;
+ padding:23px;background:linear-gradient(145deg,#211b2d,#12141d);
+ box-shadow:0 25px 90px #000b;
+}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.modal-head h2{font-size:18px;margin:0}
+.close-btn{
+ width:34px;height:34px;border-radius:10px;
+ background:#ffffff0b;color:white;font-size:19px;
+}
+.setting-group{padding:15px 0;border-bottom:1px solid var(--line)}
+.setting-label{font-size:12px;font-weight:900;margin-bottom:10px}
+.setting-help{font-size:10px;color:var(--muted);line-height:1.8;margin-top:7px}
+.setting-input,.setting-select{
+ width:100%;padding:11px 12px;border-radius:11px;
+ border:1px solid var(--line);background:#0e0c15;color:var(--text);
+ outline:none;font-size:12px;
+}
+.theme-options{display:flex;gap:9px;flex-wrap:wrap}
+.theme-choice{
+ flex:1;min-width:90px;padding:10px;border:1px solid var(--line);
+ border-radius:12px;background:#ffffff07;color:white;font-size:10px;
+}
+.theme-choice.active{border-color:var(--main);background:#a879ff18}
+.theme-dot{display:block;width:23px;height:23px;border-radius:50%;margin:0 auto 6px}
+.purple-dot{background:linear-gradient(135deg,#c6a0ff,#7549d8)}
+.blue-dot{background:linear-gradient(135deg,#73bdff,#3479d7)}
+.green-dot{background:linear-gradient(135deg,#78edbb,#169b6c)}
+.save-btn{
+ width:100%;padding:12px;border-radius:11px;margin-top:15px;
+ background:linear-gradient(110deg,var(--main),var(--main2));
+ color:white;font-weight:900;font-size:12px;
+}
+.logout-btn{
+ width:100%;padding:12px;border-radius:11px;margin-top:10px;
+ background:#e34f5a16;border:1px solid #e34f5a44;
+ color:#ff9ba4;font-weight:900;font-size:12px;
+}
+
+/* LOGIN */
+
+#loginScreen{
+ position:fixed;inset:0;z-index:3000;
+ display:none;align-items:center;justify-content:center;
+ padding:18px;background:#090710f5;backdrop-filter:blur(20px);
+}
+#loginScreen.show{display:flex}
+.login-card{
+ width:min(100%,410px);padding:30px;text-align:center;
+ border:1px solid var(--line);border-radius:25px;
+ background:linear-gradient(145deg,#211b2d,#11141e);
+ box-shadow:0 30px 90px #000b;
+}
+.login-emblem{
+ width:67px;height:67px;border-radius:20px;margin:0 auto 16px;
+ display:grid;place-items:center;
+ background:linear-gradient(135deg,#c6a0ff,#7549d8);
+ color:#170e25;font:900 29px 'Space Grotesk';
+}
+.login-card h2{font-size:20px;margin:0}
+.login-card p{color:var(--muted);font-size:11px;margin:7px 0 20px}
+.login-field{
+ width:100%;padding:13px;border-radius:12px;
+ border:1px solid var(--line);background:#0e0c15;
+ color:white;outline:none;text-align:center;margin-bottom:12px;font-size:12px;
+}
+.login-field:focus{border-color:var(--main)}
+.login-submit{
+ width:100%;padding:14px;border-radius:12px;
+ background:linear-gradient(110deg,#c6a0ff,#7549d8);
+ color:#160d24;font-weight:900;font-size:13px;
+}
+.login-note{color:#a69bb7;font-size:10px;line-height:1.8;margin-top:16px}
+
+/* FOOTER */
+
+.footer{
+ display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+ margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
+ color:#827a91;font:600 9px 'Space Grotesk';
+}
+
+@media(max-width:600px){
+ .app{padding:12px 12px 32px}
+ .top{padding:10px 11px}
+ .brand-name{font-size:13px}
+ .brand-sub{font-size:7px}
+ .connection{font-size:0;padding:8px}
+ .hero{padding:31px 3px 22px}
+ .hero p{font-size:12px}
+ .stats{gap:7px}
+ .stat{padding:11px 9px}
+ .stat-value{font-size:18px}
+ .stat-label{font-size:9px}
+ .library-panel{padding:13px}
+ .toolbar{align-items:flex-start}
+ .tools{width:100%;justify-content:stretch}
+ .search{max-width:none}
+ .grid{grid-template-columns:1fr}
+ .file-card{padding:15px}
+ .detail-heading h2{font-size:17px}
+ .footer{font-size:8px}
+ .mediafire{align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST VISIT LOGIN -->
+<div id="loginScreen">
+ <div class="login-card">
+  <div class="login-emblem">A</div>
+  <h2>AMINE VAULT</h2>
+  <p>مرحباً بك في مكتبتك الرقمية الخاصة</p>
+
+  <input id="loginName" class="login-field"
+   type="text" maxlength="35"
+   placeholder="أدخل اسمك (اختياري)">
+
+  <button id="enterBtn" class="login-submit" type="button">
+   الدخول إلى المكتبة ←
+  </button>
+
+  <div class="login-note">
+   ستظهر هذه الشاشة في أول زيارة فقط.
+   <br>يمكنك تسجيل الخروج من الإعدادات لاحقاً.
+  </div>
+ </div>
+</div>
+
+
+<div class="app">
+
+<header class="top">
+ <div class="brand">
+  <div class="logo">A</div>
+  <div>
+   <div class="brand-name">AMINE VAULT</div>
+   <div class="brand-sub">PREMIUM DIGITAL LIBRARY</div>
+  </div>
+ </div>
+
+ <div class="top-actions">
+  <div class="connection">
+   <span class="dot"></span>
+   <span>المكتبة جاهزة</span>
+  </div>
+  <button class="icon-btn" id="settingsBtn" type="button" title="الإعدادات">⚙</button>
+  <div class="avatar">👨🏻‍💻</div>
+ </div>
+</header>
+
+
+<!-- HOME PAGE -->
+<main id="homePage" class="page active">
+
+ <section class="hero">
+  <div class="eyebrow">WELCOME TO YOUR PRIVATE SPACE</div>
+  <h1>مكتبتك الرقمية، <span>بمستوى آخر.</span></h1>
+  <p>
+   اكتشف ملفاتك الدراسية، استعرض معلوماتها،
+   وتوجه إلى روابط التحميل الخاصة بها بسهولة.
+  </p>
+ </section>
+
+ <section class="stats">
+  <div class="stat">
+   <div class="stat-label">إجمالي الملفات</div>
+   <div class="stat-value purple" id="totalFiles">04</div>
+  </div>
+  <div class="stat">
+   <div class="stat-label">نوع الملفات</div>
+   <div class="stat-value blue">PDF</div>
+  </div>
+  <div class="stat">
+   <div class="stat-label">حالة المكتبة</div>
+   <div class="stat-value green">ONLINE</div>
+  </div>
+ </section>
+
+ <section class="library-panel">
+  <div class="toolbar">
+   <div>
+    <div class="section-title">ملفاتي الدراسية</div>
+    <div class="count" id="fileCount">04 ملفات متاحة</div>
+   </div>
+
+   <div class="tools">
+    <div class="search">
+     <input id="searchInput" type="search" placeholder="ابحث عن ملف...">
+    </div>
+
+    <div class="view-toggle">
+     <button id="gridView" class="active" type="button">▦</button>
+     <button id="listView" type="button">☷</button>
+    </div>
+   </div>
+  </div>
+
+  <section class="grid" id="fileGrid"></section>
+ </section>
+</main>
+
+
+<!-- FILE DETAILS -->
+<main id="detailPage" class="page">
+ <div class="detail-wrap">
+
+  <button class="back" id="backBtn" type="button">→ العودة إلى المكتبة</button>
+
+  <div class="detail">
+
+   <div class="detail-heading">
+    <div class="detail-pdf">PDF</div>
+    <div>
+     <div class="eyebrow">DOCUMENT INFORMATION</div>
+     <h2 id="detailTitle">اسم الملف</h2>
+     <div class="verified-line">
+      <span class="verified-badge">✓</span>
+      <span>ملف من مكتبة AMINE VAULT الموثقة</span>
+     </div>
+    </div>
+   </div>
+
+   <div class="detail-divider"></div>
+
+   <div class="info-row">
+    <span>نوع الملف</span>
+    <strong id="detailType">PDF Document</strong>
+   </div>
+
+   <div class="info-row">
+    <span>تاريخ الإضافة</span>
+    <strong id="detailDate">—</strong>
+   </div>
+
+   <div class="info-row">
+    <span>رقم الملف</span>
+    <strong id="detailId">—</strong>
+   </div>
+
+   <div class="owner">
+    <div class="owner-pic">👨🏻‍💻</div>
+    <div>
+     <div class="owner-name">
+      <span id="ownerName">mohamed amine</span>
+      <span class="verified-badge">✓</span>
+     </div>
+     <div class="owner-role">مالك المكتبة والمسؤول عن الملفات</div>
+    </div>
+   </div>
+
+   <!-- SECURITY INDICATOR -->
+   <div class="security-card">
+    <div class="security-top">
+     <div>
+      <div class="security-title">مؤشر الأمان البصري</div>
+      <div class="security-sub">مؤشر تصميمي لمعلومات الملف</div>
+     </div>
+     <div class="security-percent">96%</div>
+    </div>
+
+    <div class="meter">
+     <div class="meter-fill" id="securityFill"></div>
+    </div>
+
+    <div class="security-note">
+     هذه النسبة عنصر بصري داخل التطبيق، وليست فحصاً أمنياً فعلياً
+     أو ضماناً لسلامة الرابط. تحقق من مصدر الملف قبل فتحه.
+    </div>
+   </div>
+
+   <!-- MEDIAFIRE PARTNERSHIP -->
+   <div class="mediafire">
+    <div class="mediafire-left">
+     <div class="mediafire-logo">M</div>
+     <div>
+      <div class="mediafire-title">بالتعاون مع MediaFire</div>
+      <div class="mediafire-sub">EXTERNAL FILE HOSTING SERVICE</div>
+     </div>
+    </div>
+    <div class="mediafire-tag">DOWNLOAD PARTNER</div>
+   </div>
+
+   <button class="download" id="downloadBtn" type="button">
+    ⬇ تحميل الملف الآن
+   </button>
+
+   <div class="download-hint">
+    سيتم توجيهك إلى صفحة الملف على MediaFire.
+   </div>
+
+  </div>
+ </div>
+</main>
+
+
+<footer class="footer">
+ <span>© 2026 AMINE VAULT</span>
+ <span>PREMIUM DIGITAL EXPERIENCE</span>
+</footer>
+
+</div>
+
+
+<!-- SETTINGS MODAL -->
+<div class="modal-backdrop" id="settingsModal">
+ <div class="modal">
+
+  <div class="modal-head">
+   <h2>⚙ إعدادات التطبيق</h2>
+   <button class="close-btn" id="closeSettings" type="button">×</button>
+  </div>
+
+  <div class="setting-group">
+   <div class="setting-label">الملف الشخصي</div>
+   <input id="settingName" class="setting-input"
+    type="text" maxlength="35" placeholder="اسم المستخدم">
+   <div class="setting-help">يمكنك تغيير الاسم الذي يظهر في التطبيق.</div>
+  </div>
+
+  <div class="setting-group">
+   <div class="setting-label">لون واجهة التطبيق</div>
+   <div class="theme-options">
+
+    <button class="theme-choice active" data-theme="purple" type="button">
+     <span class="theme-dot purple-dot"></span>
+     بنفسجي
+    </button>
+
+    <button class="theme-choice" data-them
